@@ -26,18 +26,22 @@ jobs:
 
             APP_DIR=/var/www/law
 
-            # 如果目录不存在，clone
-            if [ ! -d "$APP_DIR" ]; then
-              mkdir -p $APP_DIR
-              cd $APP_DIR
-              git clone https://github.com/DJ-hl/Law.git .
-            fi
-
+            # 确保目录存在
+            mkdir -p $APP_DIR
             cd $APP_DIR
 
-            # 拉最新代码
-            git fetch --all
-            git reset --hard origin/main
+            # 检查是否是 Git 仓库
+            if [ ! -d ".git" ]; then
+              # 不是 Git 仓库，重新克隆
+              echo "Initializing git repository..."
+              rm -rf * 2>/dev/null || true
+              git clone https://github.com/DJ-hl/Law.git .
+            else
+              # 是 Git 仓库，拉取最新代码
+              echo "Pulling latest code..."
+              git fetch --all
+              git reset --hard origin/main
+            fi
 
             # 安装依赖
             npm install
