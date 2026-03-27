@@ -52,6 +52,11 @@ jobs:
             npm run build
 
             # 启动/重启服务
-            pm2 delete next-app || true
+            # 尝试停止进程（忽略错误）
+            pm2 stop next-app > /dev/null 2>&1 || true
+            # 尝试删除进程（忽略错误）
+            pm2 delete next-app > /dev/null 2>&1 || true
+            # 启动新进程
             pm2 start npm --name "next-app" -- start
+            # 保存 PM2 配置
             pm2 save
