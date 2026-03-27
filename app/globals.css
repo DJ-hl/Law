@@ -1,53 +1,200 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f5f5f5;
+  --foreground: #333333;
+  --mi-orange: #ff6900;
+  --mi-orange-hover: #e55e00;
+  --mi-gray: #f2f2f2;
+  --mi-border: #e0e0e0;
+  --mi-text-primary: #333333;
+  --mi-text-secondary: #666666;
+  --mi-text-tertiary: #999999;
+  --mi-white: #ffffff;
+  --mi-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --mi-shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.12);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-mi-orange: var(--mi-orange);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.glass-card {
-  background: linear-gradient(
-    130deg,
-    rgba(15, 23, 42, 0.78),
-    rgba(15, 23, 42, 0.52)
-  );
-  border: 1px solid rgba(148, 163, 184, 0.2);
-  box-shadow:
-    0 12px 40px rgba(2, 6, 23, 0.45),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(10px);
+/* 小米风格卡片 */
+.mi-card {
+  background: var(--mi-white);
+  border-radius: 12px;
+  box-shadow: var(--mi-shadow);
+  transition: all 0.3s ease;
 }
 
-@keyframes floatSlow {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-22px);
-  }
+.mi-card:hover {
+  box-shadow: var(--mi-shadow-hover);
 }
 
-.float-slow {
-  animation: floatSlow 8s ease-in-out infinite;
+/* 小米风格按钮 */
+.mi-btn-primary {
+  background: var(--mi-orange);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mi-btn-primary:hover {
+  background: var(--mi-orange-hover);
+}
+
+.mi-btn-primary:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.mi-btn-secondary {
+  background: var(--mi-gray);
+  color: var(--mi-text-primary);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mi-btn-secondary:hover {
+  background: #e8e8e8;
+}
+
+/* 小米风格输入框 */
+.mi-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--mi-border);
+  border-radius: 8px;
+  font-size: 14px;
+  background: var(--mi-white);
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.mi-input:focus {
+  border-color: var(--mi-orange);
+  box-shadow: 0 0 0 2px rgba(255, 105, 0, 0.1);
+}
+
+.mi-input::placeholder {
+  color: var(--mi-text-tertiary);
+}
+
+/* 小米风格标签 */
+.mi-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  background: rgba(255, 105, 0, 0.1);
+  color: var(--mi-orange);
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* 小米风格列表项 */
+.mi-list-item {
+  background: var(--mi-white);
+  border: 1px solid var(--mi-border);
+  border-radius: 10px;
+  padding: 16px;
+  transition: all 0.2s ease;
+}
+
+.mi-list-item:hover {
+  border-color: var(--mi-orange);
+  box-shadow: 0 2px 8px rgba(255, 105, 0, 0.08);
+}
+
+/* 小米风格操作按钮 */
+.mi-action-btn {
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.mi-action-btn-edit {
+  background: rgba(255, 105, 0, 0.1);
+  color: var(--mi-orange);
+  border-color: rgba(255, 105, 0, 0.2);
+}
+
+.mi-action-btn-edit:hover {
+  background: rgba(255, 105, 0, 0.15);
+}
+
+.mi-action-btn-delete {
+  background: rgba(244, 67, 54, 0.1);
+  color: #f44336;
+  border-color: rgba(244, 67, 54, 0.2);
+}
+
+.mi-action-btn-delete:hover {
+  background: rgba(244, 67, 54, 0.15);
+}
+
+/* 页面标题 */
+.mi-page-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--mi-text-primary);
+  letter-spacing: -0.5px;
+}
+
+.mi-page-subtitle {
+  font-size: 14px;
+  color: var(--mi-text-secondary);
+  margin-top: 8px;
+}
+
+/* 分隔线 */
+.mi-divider {
+  height: 1px;
+  background: var(--mi-border);
+  margin: 16px 0;
+}
+
+/* 空状态 */
+.mi-empty {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--mi-text-tertiary);
+}
+
+.mi-empty-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 16px;
+  background: var(--mi-gray);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
 }
