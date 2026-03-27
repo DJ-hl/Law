@@ -35,28 +35,81 @@ jobs:
               # 不是 Git 仓库，重新克隆
               echo "Initializing git repository..."
               # 彻底清理目录
+              echo "Cleaning directory..."
               find . -mindepth 1 -delete 2>/dev/null || true
               # 克隆代码
+              echo "Cloning repository..."
               git clone https://github.com/DJ-hl/Law.git .
+              if [ $? -ne 0 ]; then
+                echo "ERROR: Failed to clone repository"
+                exit 1
+              fi
+              echo "Repository cloned successfully"
             else
               # 是 Git 仓库，拉取最新代码
               echo "Pulling latest code..."
               git fetch --all
+              if [ $? -ne 0 ]; then
+                echo "ERROR: Failed to fetch code"
+                exit 1
+              fi
               git reset --hard origin/main
+              if [ $? -ne 0 ]; then
+                echo "ERROR: Failed to reset code"
+                exit 1
+              fi
+              echo "Code pulled successfully"
             fi
+            
+            # 显示当前分支和最新提交
+            echo "Current branch: $(git branch --show-current)"
+            echo "Latest commit: $(git log -1 --oneline)"
 
             # 安装依赖
+            echo "Installing dependencies..."
             npm install
+            if [ $? -ne 0 ]; then
+              echo "ERROR: Failed to install dependencies"
+              exit 1
+            fi
+            echo "Dependencies installed successfully"
 
             # 构建
+            echo "Building project..."
             npm run build
+            if [ $? -ne 0 ]; then
+              echo "ERROR: Failed to build project"
+              exit 1
+            fi
+            echo "Project built successfully"
+
+            # 清理缓存
+            echo "Clearing cache..."
+            npm cache clean --force 2>/dev/null || true
+            pm2 flush 2>/dev/null || true
 
             # 启动/重启服务
+            echo "Restarting service..."
             # 尝试停止进程（忽略错误）
             pm2 stop next-app > /dev/null 2>&1 || true
             # 尝试删除进程（忽略错误）
             pm2 delete next-app > /dev/null 2>&1 || true
             # 启动新进程
             pm2 start npm --name "next-app" -- start
+            if [ $? -ne 0 ]; then
+              echo "ERROR: Failed to start service"
+              exit 1
+            fi
             # 保存 PM2 配置
             pm2 save
+            if [ $? -ne 0 ]; then
+              echo "ERROR: Failed to save PM2 configuration"
+              exit 1
+            fi
+            
+            # 显示服务状态
+            echo "Service status:"
+            pm2 status next-app
+            
+            echo "Deployment completed successfully!"
+            echo "Last deployment time: $(date)"
