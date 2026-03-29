@@ -1,13 +1,34 @@
-name: Deploy Next.js App
+name: CI/CD Pipeline
 
 on:
   push:
     branches:
-      - main   # 只要 main 更新就部署
+      - main   # 只要 main 更新就触发
 
 jobs:
-  deploy:
+  # CI 阶段：代码检查
+  ci:
+    name: CI - Code Quality Check
     runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ 拉代码
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2️⃣ 安装依赖
+      - name: Install dependencies
+        run: npm install
+
+      # 3️⃣ 执行 Lint 检查
+      - name: Run lint
+        run: npm run lint
+
+  # CD 阶段：部署
+  cd:
+    name: CD - Deploy to Server
+    runs-on: ubuntu-latest
+    needs: ci  # 依赖于 CI 阶段成功完成
 
     steps:
       # 1️⃣ 拉代码

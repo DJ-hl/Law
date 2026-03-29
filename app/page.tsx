@@ -91,7 +91,7 @@ export default function Home() {
   async function deleteUser(id: string) {
     setLoading(true);
     try {
-      const res = await fetch(`/api/users/${id}`, { method: "DELETE" });
+      let res = await fetch(`/api/users/${id}`, { method: "DELETE" });
       const data = await res.json();
       if (!res.ok || !data.success) throw new Error(data.message || "Delete failed");
       await fetchUsers();
