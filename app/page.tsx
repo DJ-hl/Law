@@ -110,9 +110,7 @@ export default function Home() {
   return (
     <div className="min-h-screen" style={{ background: 'var(--background)' }}>
       {/* 顶部导航栏 */}
-      <header style={{ 
-        background: 'var(--mi-white)', 
-        borderBottom: '1px solid var(--mi-border)',
+      <header className="apple-header" style={{ 
         position: 'sticky',
         top: 0,
         zIndex: 100
@@ -120,12 +118,12 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              {/* 小米 Logo 样式 */}
+              {/* 苹果风格 Logo */}
               <div style={{
                 width: '40px',
                 height: '40px',
-                background: 'var(--mi-orange)',
-                borderRadius: '10px',
+                background: 'var(--apple-blue)',
+                borderRadius: '12px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -133,21 +131,21 @@ export default function Home() {
                 fontWeight: 'bold',
                 fontSize: '20px'
               }}>
-                MI
+                A
               </div>
               <div>
-                <h1 className="mi-page-title" style={{ fontSize: '20px' }}>用户管理系统</h1>
-                <p className="mi-page-subtitle" style={{ fontSize: '12px', marginTop: '2px' }}>Law Console</p>
+                <h1 className="apple-page-title" style={{ fontSize: '20px' }}>用户管理系统</h1>
+                <p className="apple-page-subtitle" style={{ fontSize: '12px', marginTop: '2px' }}>Law Console</p>
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <span style={{ color: 'var(--mi-text-tertiary)', fontSize: '14px' }}>
+              <span style={{ color: 'var(--apple-text-tertiary)', fontSize: '14px' }}>
                 {loading ? '加载中...' : message}
               </span>
               <button
                 onClick={() => void fetchUsers()}
                 disabled={loading}
-                className="mi-btn-secondary"
+                className="apple-btn-secondary"
                 style={{ padding: '8px 16px', fontSize: '13px' }}
               >
                 刷新
@@ -161,22 +159,22 @@ export default function Home() {
       <main className="mx-auto max-w-6xl px-6 py-8">
         <div className="grid gap-6 lg:grid-cols-[380px_1fr]">
           {/* 左侧：创建用户 */}
-          <div className="mi-card" style={{ padding: '24px', height: 'fit-content' }}>
+          <div className="apple-card" style={{ padding: '24px', height: 'fit-content' }}>
             <div className="flex items-center gap-2 mb-6">
               <div style={{
                 width: '32px',
                 height: '32px',
-                background: 'rgba(255, 105, 0, 0.1)',
+                background: 'rgba(0, 113, 227, 0.1)',
                 borderRadius: '8px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: 'var(--mi-orange)',
+                color: 'var(--apple-blue)',
                 fontSize: '16px'
               }}>
                 +
               </div>
-              <h2 style={{ fontSize: '18px', fontWeight: '600', color: 'var(--mi-text-primary)' }}>
+              <h2 style={{ fontSize: '18px', fontWeight: '600', color: 'var(--apple-text-primary)' }}>
                 新建用户
               </h2>
             </div>
@@ -186,7 +184,7 @@ export default function Home() {
                 <label style={{ 
                   display: 'block', 
                   fontSize: '14px', 
-                  color: 'var(--mi-text-secondary)', 
+                  color: 'var(--apple-text-secondary)', 
                   marginBottom: '8px' 
                 }}>
                   姓名
@@ -195,7 +193,7 @@ export default function Home() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="请输入用户姓名"
-                  className="mi-input"
+                  className="apple-input"
                 />
               </div>
               
@@ -203,7 +201,7 @@ export default function Home() {
                 <label style={{ 
                   display: 'block', 
                   fontSize: '14px', 
-                  color: 'var(--mi-text-secondary)', 
+                  color: 'var(--apple-text-secondary)', 
                   marginBottom: '8px' 
                 }}>
                   邮箱
@@ -212,7 +210,7 @@ export default function Home() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="请输入邮箱地址"
-                  className="mi-input"
+                  className="apple-input"
                   type="email"
                 />
               </div>
@@ -220,7 +218,7 @@ export default function Home() {
               <button
                 type="submit"
                 disabled={loading}
-                className="mi-btn-primary w-full"
+                className="apple-btn-primary w-full"
                 style={{ marginTop: '8px' }}
               >
                 {loading ? '保存中...' : '创建用户'}
@@ -229,35 +227,35 @@ export default function Home() {
           </div>
 
           {/* 右侧：用户列表 */}
-          <div className="mi-card" style={{ padding: '24px' }}>
+          <div className="apple-card" style={{ padding: '24px' }}>
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-2">
                 <div style={{
                   width: '32px',
                   height: '32px',
-                  background: 'rgba(255, 105, 0, 0.1)',
+                  background: 'rgba(0, 113, 227, 0.1)',
                   borderRadius: '8px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: 'var(--mi-orange)',
+                  color: 'var(--apple-blue)',
                   fontSize: '16px'
                 }}>
                   👥
                 </div>
-                <h2 style={{ fontSize: '18px', fontWeight: '600', color: 'var(--mi-text-primary)' }}>
+                <h2 style={{ fontSize: '18px', fontWeight: '600', color: 'var(--apple-text-primary)' }}>
                   用户列表
                 </h2>
               </div>
-              <span className="mi-tag">
+              <span className="apple-tag">
                 共 {users.length} 人
               </span>
             </div>
 
             <div className="space-y-3" style={{ maxHeight: '600px', overflowY: 'auto' }}>
               {users.length === 0 ? (
-                <div className="mi-empty">
-                  <div className="mi-empty-icon">📋</div>
+                <div className="apple-empty">
+                  <div className="apple-empty-icon">📋</div>
                   <p style={{ fontSize: '14px' }}>暂无用户数据</p>
                   <p style={{ fontSize: '12px', marginTop: '8px' }}>请在左侧创建第一个用户</p>
                 </div>
@@ -265,20 +263,20 @@ export default function Home() {
                 users.map((user) => (
                   <div
                     key={user._id}
-                    className="mi-list-item"
+                    className="apple-list-item"
                   >
                     {editingId === user._id ? (
                       <div className="space-y-3">
                         <input
                           value={editName}
                           onChange={(e) => setEditName(e.target.value)}
-                          className="mi-input"
+                          className="apple-input"
                           placeholder="姓名"
                         />
                         <input
                           value={editEmail}
                           onChange={(e) => setEditEmail(e.target.value)}
-                          className="mi-input"
+                          className="apple-input"
                           placeholder="邮箱"
                           type="email"
                         />
@@ -287,7 +285,7 @@ export default function Home() {
                             type="button"
                             onClick={() => void updateUser(user._id)}
                             disabled={loading}
-                            className="mi-btn-primary"
+                            className="apple-btn-primary"
                             style={{ padding: '8px 16px', fontSize: '13px' }}
                           >
                             保存
@@ -300,7 +298,7 @@ export default function Home() {
                               setEditEmail("");
                             }}
                             disabled={loading}
-                            className="mi-btn-secondary"
+                            className="apple-btn-secondary"
                             style={{ padding: '8px 16px', fontSize: '13px' }}
                           >
                             取消
@@ -311,17 +309,10 @@ export default function Home() {
                       <div className="flex items-start justify-between gap-4">
                         <div className="flex items-center gap-3">
                           {/* 用户头像 */}
-                          <div style={{
+                          <div className="apple-avatar" style={{
                             width: '44px',
                             height: '44px',
-                            background: 'linear-gradient(135deg, var(--mi-orange), #ff8533)',
-                            borderRadius: '50%',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            color: 'white',
-                            fontSize: '16px',
-                            fontWeight: '500'
+                            fontSize: '16px'
                           }}>
                             {user.name.charAt(0).toUpperCase()}
                           </div>
@@ -329,20 +320,20 @@ export default function Home() {
                             <p style={{ 
                               fontSize: '15px', 
                               fontWeight: '500', 
-                              color: 'var(--mi-text-primary)' 
+                              color: 'var(--apple-text-primary)' 
                             }}>
                               {user.name}
                             </p>
                             <p style={{ 
                               fontSize: '13px', 
-                              color: 'var(--mi-text-secondary)', 
+                              color: 'var(--apple-text-secondary)', 
                               marginTop: '2px' 
                             }}>
                               {user.email}
                             </p>
                             <p style={{ 
                               fontSize: '12px', 
-                              color: 'var(--mi-text-tertiary)', 
+                              color: 'var(--apple-text-tertiary)', 
                               marginTop: '4px' 
                             }}>
                               创建于 {new Date(user.createdAt).toLocaleDateString('zh-CN')}
@@ -358,7 +349,7 @@ export default function Home() {
                               setEditEmail(user.email);
                             }}
                             disabled={loading}
-                            className="mi-action-btn mi-action-btn-edit"
+                            className="apple-action-btn apple-action-btn-edit"
                           >
                             编辑
                           </button>
@@ -366,7 +357,7 @@ export default function Home() {
                             type="button"
                             onClick={() => void deleteUser(user._id)}
                             disabled={loading}
-                            className="mi-action-btn mi-action-btn-delete"
+                            className="apple-action-btn apple-action-btn-delete"
                           >
                             删除
                           </button>
@@ -383,13 +374,13 @@ export default function Home() {
 
       {/* 底部 */}
       <footer style={{ 
-        borderTop: '1px solid var(--mi-border)', 
+        borderTop: '1px solid var(--apple-border)', 
         marginTop: 'auto',
         padding: '24px 0',
         textAlign: 'center'
       }}>
-        <p style={{ fontSize: '13px', color: 'var(--mi-text-tertiary)' }}>
-          Next.js + MongoDB · 小米风格设计
+        <p style={{ fontSize: '13px', color: 'var(--apple-text-tertiary)' }}>
+          Next.js + MongoDB · 苹果风格设计
         </p>
       </footer>
     </div>

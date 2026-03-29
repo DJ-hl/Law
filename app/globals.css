@@ -1,26 +1,28 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f5f5f5;
-  --foreground: #333333;
-  --mi-orange: #ff6900;
-  --mi-orange-hover: #e55e00;
-  --mi-gray: #f2f2f2;
-  --mi-border: #e0e0e0;
-  --mi-text-primary: #333333;
-  --mi-text-secondary: #666666;
-  --mi-text-tertiary: #999999;
-  --mi-white: #ffffff;
-  --mi-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  --mi-shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.12);
+  --background: #f5f5f7;
+  --foreground: #1d1d1f;
+  --apple-blue: #0071e3;
+  --apple-blue-hover: #0077ed;
+  --apple-gray: #f2f2f7;
+  --apple-border: #d2d2d7;
+  --apple-text-primary: #1d1d1f;
+  --apple-text-secondary: #6e6e73;
+  --apple-text-tertiary: #86868b;
+  --apple-white: #ffffff;
+  --apple-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  --apple-shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --apple-red: #ff3b30;
+  --apple-green: #34c759;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-mi-orange: var(--mi-orange);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-apple-blue: var(--apple-blue);
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 body {
@@ -29,26 +31,29 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
 }
 
-/* 小米风格卡片 */
-.mi-card {
-  background: var(--mi-white);
-  border-radius: 12px;
-  box-shadow: var(--mi-shadow);
+/* 苹果风格卡片 */
+.apple-card {
+  background: var(--apple-white);
+  border-radius: 16px;
+  box-shadow: var(--apple-shadow);
   transition: all 0.3s ease;
+  border: 1px solid var(--apple-border);
 }
 
-.mi-card:hover {
-  box-shadow: var(--mi-shadow-hover);
+.apple-card:hover {
+  box-shadow: var(--apple-shadow-hover);
+  transform: translateY(-2px);
 }
 
-/* 小米风格按钮 */
-.mi-btn-primary {
-  background: var(--mi-orange);
+/* 苹果风格按钮 */
+.apple-btn-primary {
+  background: var(--apple-blue);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 10px 24px;
   font-size: 14px;
   font-weight: 500;
@@ -56,20 +61,21 @@ body {
   transition: all 0.2s ease;
 }
 
-.mi-btn-primary:hover {
-  background: var(--mi-orange-hover);
+.apple-btn-primary:hover {
+  background: var(--apple-blue-hover);
+  transform: translateY(-1px);
 }
 
-.mi-btn-primary:disabled {
-  background: #ccc;
+.apple-btn-primary:disabled {
+  background: #d2d2d7;
   cursor: not-allowed;
 }
 
-.mi-btn-secondary {
-  background: var(--mi-gray);
-  color: var(--mi-text-primary);
+.apple-btn-secondary {
+  background: var(--apple-gray);
+  color: var(--apple-text-primary);
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 10px 24px;
   font-size: 14px;
   font-weight: 500;
@@ -77,61 +83,63 @@ body {
   transition: all 0.2s ease;
 }
 
-.mi-btn-secondary:hover {
-  background: #e8e8e8;
+.apple-btn-secondary:hover {
+  background: #e5e5ea;
+  transform: translateY(-1px);
 }
 
-/* 小米风格输入框 */
-.mi-input {
+/* 苹果风格输入框 */
+.apple-input {
   width: 100%;
   padding: 12px 16px;
-  border: 1px solid var(--mi-border);
-  border-radius: 8px;
+  border: 1px solid var(--apple-border);
+  border-radius: 10px;
   font-size: 14px;
-  background: var(--mi-white);
+  background: var(--apple-white);
   transition: all 0.2s ease;
   outline: none;
 }
 
-.mi-input:focus {
-  border-color: var(--mi-orange);
-  box-shadow: 0 0 0 2px rgba(255, 105, 0, 0.1);
+.apple-input:focus {
+  border-color: var(--apple-blue);
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.1);
 }
 
-.mi-input::placeholder {
-  color: var(--mi-text-tertiary);
+.apple-input::placeholder {
+  color: var(--apple-text-tertiary);
 }
 
-/* 小米风格标签 */
-.mi-tag {
+/* 苹果风格标签 */
+.apple-tag {
   display: inline-flex;
   align-items: center;
-  padding: 4px 12px;
-  background: rgba(255, 105, 0, 0.1);
-  color: var(--mi-orange);
-  border-radius: 12px;
-  font-size: 12px;
+  padding: 6px 14px;
+  background: rgba(0, 113, 227, 0.1);
+  color: var(--apple-blue);
+  border-radius: 16px;
+  font-size: 13px;
   font-weight: 500;
 }
 
-/* 小米风格列表项 */
-.mi-list-item {
-  background: var(--mi-white);
-  border: 1px solid var(--mi-border);
-  border-radius: 10px;
-  padding: 16px;
+/* 苹果风格列表项 */
+.apple-list-item {
+  background: var(--apple-white);
+  border: 1px solid var(--apple-border);
+  border-radius: 12px;
+  padding: 20px;
   transition: all 0.2s ease;
 }
 
-.mi-list-item:hover {
-  border-color: var(--mi-orange);
-  box-shadow: 0 2px 8px rgba(255, 105, 0, 0.08);
+.apple-list-item:hover {
+  border-color: var(--apple-blue);
+  box-shadow: 0 2px 10px rgba(0, 113, 227, 0.08);
+  transform: translateY(-1px);
 }
 
-/* 小米风格操作按钮 */
-.mi-action-btn {
-  padding: 6px 14px;
-  border-radius: 6px;
+/* 苹果风格操作按钮 */
+.apple-action-btn {
+  padding: 8px 16px;
+  border-radius: 8px;
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
@@ -139,62 +147,96 @@ body {
   border: 1px solid transparent;
 }
 
-.mi-action-btn-edit {
-  background: rgba(255, 105, 0, 0.1);
-  color: var(--mi-orange);
-  border-color: rgba(255, 105, 0, 0.2);
+.apple-action-btn-edit {
+  background: rgba(0, 113, 227, 0.1);
+  color: var(--apple-blue);
+  border-color: rgba(0, 113, 227, 0.2);
 }
 
-.mi-action-btn-edit:hover {
-  background: rgba(255, 105, 0, 0.15);
+.apple-action-btn-edit:hover {
+  background: rgba(0, 113, 227, 0.15);
 }
 
-.mi-action-btn-delete {
-  background: rgba(244, 67, 54, 0.1);
-  color: #f44336;
-  border-color: rgba(244, 67, 54, 0.2);
+.apple-action-btn-delete {
+  background: rgba(255, 59, 48, 0.1);
+  color: var(--apple-red);
+  border-color: rgba(255, 59, 48, 0.2);
 }
 
-.mi-action-btn-delete:hover {
-  background: rgba(244, 67, 54, 0.15);
+.apple-action-btn-delete:hover {
+  background: rgba(255, 59, 48, 0.15);
 }
 
 /* 页面标题 */
-.mi-page-title {
+.apple-page-title {
   font-size: 28px;
   font-weight: 600;
-  color: var(--mi-text-primary);
+  color: var(--apple-text-primary);
   letter-spacing: -0.5px;
 }
 
-.mi-page-subtitle {
+.apple-page-subtitle {
   font-size: 14px;
-  color: var(--mi-text-secondary);
+  color: var(--apple-text-secondary);
   margin-top: 8px;
 }
 
 /* 分隔线 */
-.mi-divider {
+.apple-divider {
   height: 1px;
-  background: var(--mi-border);
+  background: var(--apple-border);
   margin: 16px 0;
 }
 
 /* 空状态 */
-.mi-empty {
+.apple-empty {
   text-align: center;
-  padding: 48px 24px;
-  color: var(--mi-text-tertiary);
+  padding: 60px 24px;
+  color: var(--apple-text-tertiary);
 }
 
-.mi-empty-icon {
-  width: 64px;
-  height: 64px;
-  margin: 0 auto 16px;
-  background: var(--mi-gray);
+.apple-empty-icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 20px;
+  background: var(--apple-gray);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
+  font-size: 32px;
+}
+
+/* 苹果风格头部 */
+.apple-header {
+  background: var(--apple-white);
+  border-bottom: 1px solid var(--apple-border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* 苹果风格头像 */
+.apple-avatar {
+  background: linear-gradient(135deg, var(--apple-blue), #0056b3);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+}
+
+/* 苹果风格加载状态 */
+.apple-loading {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(0, 113, 227, 0.3);
+  border-radius: 50%;
+  border-top-color: var(--apple-blue);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
